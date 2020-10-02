@@ -3,13 +3,13 @@ Elasticsearch, Logstash, Kibana and filebeat installation on kubernetes cluster 
 
 ## Prerequisites
 * kubernetes installed
-* Ansible >= 2.9 version (If Jenkins installation is also needed)
+* Ansible >= 2.9 version
 
 ## Jenkins installation
 Jenkins installation is done via ansible-playbook with a custom docker image and making use of jenkins configuration as code plugin.
 ### Build Jenkins image
 Dockerfile includes installation of
-* Jenkins suggested plugins
+* Jenkins basic suggested plugins along with plugins like git, kubernetes, job-dsl etc
 * Docker installation to enable docker commands inside Jenkins
 * Ansible package
 * kubectl binary
