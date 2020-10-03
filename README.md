@@ -19,6 +19,9 @@ Dockerfile includes installation of
 - Update below variables in jenkins inventory file
   * kubernetes api server address
   * **kubeconfig_file** - Convert file into base64 format before adding to inventory. For example run "cat kubeconfig_file | base64 -w 0", copy ouput to the inventory file.
+  ```
+  cat ~/.kube/config | base64 -w 0
+  ```
   * **docker_login_username** - Docker hub login username
   * **docker_login_password**  - Docker hub login password
   * **github_repo_token** - Token to github repository
