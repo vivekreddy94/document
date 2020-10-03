@@ -27,4 +27,9 @@ Dockerfile includes installation of
 Note: For encrypting passwords and kubeconfig content before adding to inventory file, follow https://docs.ansible.com/ansible/latest/user_guide/vault.html#creating-encrypted-variables
 
 ### Running Jenkins playbook
+Execute below ansible command and it should prompt for the vault password which is used previously to encrypt strings.
+```
+ansible-playbook jenkins.yml -i inventories/stage --ask-vault-pass
+```
+
 ![name-of-you-image](https://github.com/vivekreddy94/document/blob/main/elk_architecture.png)
