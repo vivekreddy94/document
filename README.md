@@ -122,4 +122,10 @@ ansible-playbook kibana.yml -i inventories/stage
 * All the components are tested again after loading data.
 * Elasticsearch is queried to check if logs are loaded.
 
+**Deploy on production**
+* Deploys elk_stack.yml playbook which includes elasticsearch, logstash, filebeat and kibana playbooks
+```
+ansible-playbook elk_stack.yml -i inventories/production
+```
+
 
