@@ -22,7 +22,8 @@ Update below variables in jenkins inventory file
 * docker_login_username - Docker hub login username
 * docker_login_password  - Docker hub login password
 * github_repo_token - Token to github repository
-* adminuser_password - Password for logging to Jenkins instance as "admin" user
+* adminuser_password - Password for logging to Jenkins instance as "admin" user.
+
 Note: For encrypting password before adding to inventory file, follow https://docs.ansible.com/ansible/latest/user_guide/vault.html#creating-encrypted-variables
 
 ![name-of-you-image](https://github.com/vivekreddy94/document/blob/main/elk_architecture.png)
