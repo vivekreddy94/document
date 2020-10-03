@@ -68,5 +68,20 @@ Below is the architecture of ELK setup.
 
 **filebeat**: One pod filebeat is installed to gather logs from docker containers and send it to logstash. For deploying filebeat 'daemonset' object is used as we want to pod to run all kubernetes cluster nodes. In this case only one pod is deployed, but on addition of new nodes to kuberenetes cluster, daemonset takes care of initiating pod on new nodes.
 
-### 
+### CICD Pipeline
+**Test slave setup**: Checks the slave if required packages ansible, kubectl, docker, kubeval and polaris are installed as these are necessary for coming pipeline stages.
+
+**Setup requirements**: 
+* Copies the kubeconfig file from jenkins credentails to home directory in jenkins slave.
+* Executes kubernetes-lingting.yml playbook to copy ELK stack kubernetes files to slave node and make it ready for 'Validate kubernetes code'.
+
+**Perform ansible linting**: 
+* Builds a custom ansible-lint docker image by coping ansible files into the image
+* Runs docker image to perform linting on elk_stack.yml playbook
+* Finally cleans up ansible-linting docker image
+
+**Validate kubernetes code**
+* Kubernetes files are validated by [kubeval](https://kubeval.instrumenta.dev/) 
+* Next files are validated by [polaris](https://github.com/FairwindsOps/polaris) for doing checks on images, tags, security priviliges, probes etc.
+
 
