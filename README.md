@@ -12,5 +12,11 @@ Dockerfile includes installation of
 * Jenkins basic suggested plugins along with plugins like git, kubernetes, job-dsl etc
 * Docker installation to enable docker commands inside Jenkins
 * Ansible package
-* kubectl binary
+* kubectl package
+### Before running jenkins playbook
+Update jenkins inventory file with
+* kubernetes api server address
+* Kubeconfig path - Path to your kubeconfig file
+* kubeconfig file - Convert file into base64 format before adding to inventory. For example run "cat kubeconfig_file | base64 -w 0", copy ouput to the inventory file
+
 ![name-of-you-image](https://github.com/vivekreddy94/document/blob/main/elk_architecture.png)
