@@ -6,7 +6,7 @@ Elasticsearch, Logstash, Kibana and filebeat installation on kubernetes cluster 
 * Ansible >= 2.9 version
 * Docker
 
-## Jenkins installation
+## Jenkins Installation
 Jenkins installation is done via ansible-playbook with a custom docker image and making use of jenkins configuration as code plugin.
 ### Jenkins image
 Dockerfile includes installation of
@@ -40,6 +40,7 @@ Configuration is completely managed through Jenkins configuration as code plugin
   * **adminuser_password** - Password for logging to Jenkins instance as "admin" user.
 
 If needed other variable values can be changed based on requirement.
+
 Note: For encrypting passwords and kubeconfig content before adding to inventory file, follow https://docs.ansible.com/ansible/latest/user_guide/vault.html#creating-encrypted-variables
 
 ### Running Jenkins playbook
@@ -47,9 +48,13 @@ Execute below ansible command and it should prompt for the vault password which 
 ```
 ansible-playbook jenkins.yml -i inventories/stage --ask-vault-pass
 ```
-### Workflow of playbook
+### Workflow of Jenkins playbook
 * Builds core Jenkins image with custom plugins and packages. Pushes it to Dockerhub.
 * Installs Jenkins on kubernetes cluster using ansible k8s module. i.e applying role-binding, configmap, service, deployment etc
 * Builds Jenkins slave image and push it to Dockerhub
+
+## ELK Stack
+Elasticsearch, logstash, kibana and filebeats together are ELK stack. Installation includes three pod elasticsearch cluster, two logstash, one Kibana and one filebeat.
+Below is the architecture of ELK setup.
 
 ![name-of-you-image](https://github.com/vivekreddy94/document/blob/main/elk_architecture.png)
