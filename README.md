@@ -62,9 +62,11 @@ Below is the architecture of ELK setup.
 ### Overview of setup
 **Elasticsearch**: Three pod elasticsearch cluster is installed where they all talk to eachother to maintain replicas of incoming data and indices. As it is stateful application with requirement of persistent data, 'statefulsets' object is used which creates unique persisten identifier and recreates the pod with same identifier on failures. For data storage, persistent volumes are created and claimed through statefulset. Configuration is loaded to elasticsearch through configmaps.
 
-**Logstash**: Two pod logstash in installed to share incoming data load. Logstash is deployed through 'deployment' object and configuration is loaded through configmap. Logstash is configured to accept data on 5044 beats port from filebeats, then applies filter and other operations on data to finally send it to elasticsearch cluster.
+**Logstash**: Two pod logstash in installed to share incoming data load. Logstash is deployed through 'deployment' object and configuration is loaded through configmap. Logstash is configured to accept data on 5044 beats port from filebeats, then applies filters and other operations on data to finally send it to elasticsearch cluster.
 
 **Kibana**: One pod kibana is installed to visualize and quer data from elasticsearch. Similar to logstash, kibana is deployed via 'deployment' set and configuration is loaded through configmap.
 
-**filebeat**: As this setup is installed on a single node kubernetes cluster, only one filebeat is installed. As 
+**filebeat**: One pod filebeat is installed to gather logs from docker containers and send it to logstash. For deploying filebeat 'daemonset' object is used as we want to pod to run all kubernetes cluster nodes. In this case only one pod is deployed, but on addition of new nodes to kuberenetes cluster, daemonset takes care of initiating pod on new nodes.
+
+### 
 
