@@ -69,7 +69,7 @@ Below is the architecture of ELK setup.
 **filebeat**: One pod filebeat is installed to gather logs from docker containers and send it to logstash. For deploying filebeat 'daemonset' object is used as we want to pod to run all kubernetes cluster nodes. In this case only one pod is deployed, but on addition of new nodes to kuberenetes cluster, daemonset takes care of initiating pod on new nodes.
 
 ### CICD Pipeline
-####Test slave setup####
+#### Test slave setup
 Checks the slave if required packages ansible, kubectl, docker, kubeval and polaris are installed as these are necessary for coming pipeline stages.
 
 **Setup requirements**: 
