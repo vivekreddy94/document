@@ -127,5 +127,5 @@ ansible-playbook kibana.yml -i inventories/stage
 ```
 ansible-playbook elk_stack.yml -i inventories/production
 ```
-
+Note: Kubeconfig file of production cluster should be loaded here, but as it is a single node cluster kubeconfig file loaded in "Setup requirements" will be reused.
 
