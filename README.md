@@ -68,8 +68,15 @@ Below is the architecture of ELK setup.
 
 **filebeat**: One pod filebeat is installed to gather logs from docker containers and send it to logstash. For deploying filebeat 'daemonset' object is used as we want to pod to run all kubernetes cluster nodes. In this case only one pod is deployed, but on addition of new nodes to kuberenetes cluster, daemonset takes care of initiating pod on new nodes.
 
-## CICD deployment strategy
-![Deploylment strategy](https://github.com/vivekreddy94/document/blob/main/elk_jenkins_deploy.png)
+## ELK deployment strategy
+![ELK stack deployment](https://github.com/vivekreddy94/document/blob/main/elk_jenkins_deploy.png)
+
+Workflow of ELK stack deployment in relation to above image
+1. Github notifies Jenkins elk CICD pipeline job on a new commit.
+2. Jenkins master using kubernetes plugin requests a slave pod.
+3. Jenkins slave pod is created dynamically by pulling image from docker registry
+4. CICD pipeline using kubeconfig file requests kubernetes api to deploy ELK stack
+5. ELK stack is deployed on kubernetes cluster
 
 ### CICD Pipeline
 #### Test slave setup
