@@ -84,7 +84,7 @@ Checks the slave if required packages ansible, kubectl, docker, kubeval and pola
 
 #### Setup requirements
 * Copies the kubeconfig file from jenkins credentails to home directory in jenkins slave.
-* Executes kubernetes-lingting.yml playbook to copy ELK stack kubernetes files to slave node and make it ready for 'Validate kubernetes code'.
+* Executes kubernetes-lingting.yml playbook to copy ELK stack kubernetes files to slave node and make it ready for [Validate kubernetes code](https://github.com/vivekreddy94/document/blob/main/README.md#validate-kubernetes-code)
 
 #### Perform ansible linting
 * Builds a custom ansible-lint docker image by coping ansible files into the image
