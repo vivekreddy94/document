@@ -80,8 +80,46 @@ Below is the architecture of ELK setup.
 * Runs docker image to perform linting on elk_stack.yml playbook
 * Finally cleans up ansible-linting docker image
 
-**Validate kubernetes code**
+**Validate kubernetes code**:
 * Kubernetes files are validated by [kubeval](https://kubeval.instrumenta.dev/) 
 * Next files are validated by [polaris](https://github.com/FairwindsOps/polaris) for doing checks on images, tags, security priviliges, probes etc.
+
+**Deploy and test elasticsearch**:
+* Deploys elasticsearch using ansible playbook
+```
+ansible-playbook elasticsearch.yml -i inventories/stage
+```
+* Checks if all pods in statefulset are ready
+* Loads sample data to elasticsearch cluster
+* Compares the loaded data with expected test output data.
+
+**Deploy and test logstash**:
+* Deploys logstash using ansible playbook. For testing logstash, deployment includes 'http' plugin in logstash configuration to allow input data on 8080 port and creates output log file at /tmp/output.log
+```
+ansible-playbook logstash.yml -i inventories/stage
+```
+* Check if logstash pod is ready.
+* Loaded sample data into logstash at 8080.
+* Tesst if the output log file is created.
+
+**Deploy and test filebeat**:
+* Deploys filebeat using ansible playbook.
+```
+ansible-playbook filebeat.yml -i inventories/stage
+```
+* Check if filebeat pod is ready.
+* Test filebeat configuration if its able to communicate with logstash
+
+**Deploy and test kibana**:
+* Deploys kibana using ansible playbook.
+```
+ansible-playbook kibana.yml -i inventories/stage
+```
+* Check if kibana port is listening.
+
+**Load data and test**
+* Executes data_loading_pods.yml playboo to deploy custom pods for generating random logs.
+* All the components are tested again after loading data.
+* Elasticsearch is queried to check if logs are loaded.
 
 
