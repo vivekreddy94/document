@@ -118,7 +118,7 @@ ansible-playbook kibana.yml -i inventories/stage
 * Check if kibana port is listening.
 
 **Load data and test**
-* Executes data_loading_pods.yml playboo to deploy custom pods for generating random logs.
+* Executes data_loading_pods.yml playbook to deploy custom pods for generating random logs.
 * All the components are tested again after loading data.
 * Elasticsearch is queried to check if logs are loaded.
 
