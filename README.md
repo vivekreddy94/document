@@ -90,7 +90,7 @@ Checks the slave if required packages ansible, kubectl, docker, kubeval and pola
 
 #### Setup requirements
 * Copies the kubeconfig file from jenkins credentails to home directory in jenkins slave.
-* Executes kubernetes-lingting.yml playbook to copy ELK stack kubernetes files to slave node and make it ready for [Validate kubernetes code](https://github.com/vivekreddy94/document/blob/main/README.md#validate-kubernetes-code)
+* Executes kubernetes-lingting.yml playbook to copy ELK stack kubernetes files to slave node and make it ready for [Validate kubernetes code](https://github.com/vivekreddy94/document/blob/main/README.md#validate-kubernetes-code) stage
 
 #### Perform ansible linting
 * Builds a custom ansible-lint docker image by coping ansible files into the image
@@ -99,7 +99,7 @@ Checks the slave if required packages ansible, kubectl, docker, kubeval and pola
 
 #### Validate kubernetes code
 * Kubernetes files are validated by [kubeval](https://kubeval.instrumenta.dev/) 
-* Next files are validated by [polaris](https://github.com/FairwindsOps/polaris) for doing checks on images, tags, security priviliges, probes etc.
+* Next the files are validated by [polaris](https://github.com/FairwindsOps/polaris) for doing checks on images, tags, security priviliges, probes etc.
 
 #### Deploy and test elasticsearch
 * Deploys elasticsearch using ansible playbook
@@ -116,8 +116,8 @@ ansible-playbook elasticsearch.yml -i inventories/stage
 ansible-playbook logstash.yml -i inventories/stage
 ```
 * Check if logstash pod is ready.
-* Loaded sample data into logstash at 8080.
-* Tesst if the output log file is created.
+* Loads sample data into logstash at 8080.
+* Tests if the output log file is created.
 
 #### Deploy and test filebeat
 * Deploys filebeat using ansible playbook.
@@ -145,6 +145,7 @@ ansible-playbook elk_stack.yml -i inventories/stage --extra-vars "install_action
 ```
 
 #### Deploy on production
+* Deploys [reloader](https://github.com/stakater/Reloader) for performing rolling upgrade on deployment, daemonset, and statefulsets.
 * Deploys elk_stack.yml playbook which includes elasticsearch, logstash, filebeat and kibana playbooks
 ```
 ansible-playbook elk_stack.yml -i inventories/production
