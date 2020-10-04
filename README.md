@@ -128,10 +128,14 @@ ansible-playbook kibana.yml -i inventories/stage
 ```
 * Check if kibana port is listening.
 
-#### Load data and test
-* Executes data_loading_pods.yml playbook to deploy custom pods for generating random logs.
+#### Load data, test and cleanup
+* Executes data_loading_pods.yml playbook to deploy custom pods for generating 100000 random logs.
 * All the components are tested again after loading data.
-* Elasticsearch is queried to check if logs are loaded.
+* Elasticsearch is queried to check if 100000 logs are loaded.
+* Finally, removes all components.
+```
+ansible-playbook elk_stack.yml -i inventories/stage --extra-vars "install_action=absent"
+```
 
 #### Deploy on production
 * Deploys elk_stack.yml playbook which includes elasticsearch, logstash, filebeat and kibana playbooks
