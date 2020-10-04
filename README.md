@@ -79,6 +79,7 @@ Workflow of ELK stack deployment in relation to above image
 5. ELK stack is deployed on kubernetes cluster
 
 ### CICD Pipeline
+Below explains the steps performed in each stage of pipeline.
 
 ![Pipeline stages](https://github.com/vivekreddy94/document/blob/main/cicd_arch.png)
 
