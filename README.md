@@ -81,6 +81,10 @@ Workflow of ELK stack deployment in relation to above image
 ### CICD Pipeline
 
 ![Pipeline stages](https://github.com/vivekreddy94/document/blob/main/cicd_arch.png)
+
+#### Checkout
+Checks out elk stack github repo.
+
 #### Test slave setup
 Checks the slave if required packages ansible, kubectl, docker, kubeval and polaris are installed as these are necessary for coming pipeline stages.
 
