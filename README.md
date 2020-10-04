@@ -126,6 +126,7 @@ ansible-playbook filebeat.yml -i inventories/stage
 ```
 ansible-playbook kibana.yml -i inventories/stage
 ```
+* Check if kibana pod is ready
 * Check if kibana port is listening.
 
 #### Load data, test and cleanup
